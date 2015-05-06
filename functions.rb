@@ -1,7 +1,7 @@
 require './corelist'
 require 'tk'
 
-def getDisplay(root,changeOpt,category)
+def getDisplay(root, changeOpt, category)
 	items = Array.new
 	for i in ITEMS[category]
 		items.push("%-20s\t%5s" % [i.name, i.isOwned])
@@ -9,6 +9,12 @@ def getDisplay(root,changeOpt,category)
 	changeOpt.values = items.map{|i| i=~/^(.+)\s/; $1}
 	changeOpt.pack("side" => "right")
 	return items
+end
+
+def getInfo(choice, category)
+	item = findElement(ITEMS[category], choice)
+	puts item.name
+	return [item.name, item.rank]
 end
 
 def changeOwnStatus(choice, category)

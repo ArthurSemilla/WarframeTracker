@@ -42,9 +42,22 @@ class Weapon < Item
 		@attackSpeed = 0
 		@statusChance = 0
 		@elementDmg = 0
+		@rank = 0
 	end
 
-	attr_accessor :isCatalysted
+		attr_accessor :isCatalysted
+		attr_accessor :masteryRank
+		attr_accessor :weaponType
+		attr_accessor :physicalDmg
+		attr_accessor :impactDmg
+		attr_accessor :punctureDmg
+		attr_accessor :slashDmg
+		attr_accessor :critChance
+		attr_accessor :critMult
+		attr_accessor :attackSpeed
+		attr_accessor :statusChance
+		attr_accessor :elementDmg
+		attr_accessor :rank
 end
 
 class Primary < Weapon
@@ -57,6 +70,7 @@ class Primary < Weapon
 		@magSize = 0
 		@maxAmmo = 0
 		@reloadTime = 0
+		@fireRate = 0
 	end
 
 	attr_accessor :triggerType
@@ -66,6 +80,7 @@ class Primary < Weapon
 	attr_accessor :magSize
 	attr_accessor :maxAmmo
 	attr_accessor :reloadTime
+	attr_accessor :fireRate
 end
 
 class Secondary < Weapon

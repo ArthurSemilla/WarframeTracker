@@ -1,4 +1,5 @@
 require './functions'
+require './httpread'
 
 root = TkRoot.new do
 	title "Warframe Tracker"
@@ -20,6 +21,8 @@ TkLabel.new(root) do
 	changeOpt = TkCombobox.new(root)
 
 	changeButton = TkButton.new(root) {text 'Change'; command(proc{changeOwnStatus(changeOpt.get.to_s, category); output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "right")}
+	infoButton = TkButton.new(root) {text 'Info'; command(proc{output.value = getInfo(changeOpt.get.to_s, category);}) ; pack("side" => "right")}
+
 
 	wButton = TkButton.new(frame) {text 'Warframes'; command(proc{category = 0; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
 	wButton = TkButton.new(frame) {text 'Primaries' ; command(proc{category = 1; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
