@@ -1,54 +1,9 @@
-require './warframes'
-require './primaries'
-require './secondaries'
-require './melees'
+require './corelist'
 require 'tk'
 
 def getDisplay(root,changeOpt,category)
-	if category == 1
-		return displayWarframes(root,changeOpt)
-	elsif category == 2
-		return displayPrimaries(root,changeOpt)
-	elsif category == 3
-		return displaySecondaries(root,changeOpt)
-	elsif category == 4
-		return displayMelees(root,changeOpt)
-	end
-end
-
-def displayWarframes(root,changeOpt)
 	items = Array.new
-	for i in WARFRAMES
-		items.push("%-20s\t%5s" % [i.name, i.isOwned])
-	end
-	changeOpt.values = items.map{|i| i=~/^(.+)\s/; $1}
-	changeOpt.pack("side" => "right")
-	return items
-end
-
-def displayPrimaries(root,changeOpt)
-	items = Array.new
-	for i in PRIMARIES
-		items.push("%-20s\t%5s" % [i.name, i.isOwned])
-	end
-	changeOpt.values = items.map{|i| i=~/^(.+)\s/; $1}
-	changeOpt.pack("side" => "right")
-	return items
-end
-
-def displaySecondaries(root,changeOpt)
-	items = Array.new
-	for i in SECONDARIES
-		items.push("%-20s\t%5s" % [i.name, i.isOwned])
-	end
-	changeOpt.values = items.map{|i| i=~/^(.+)\s/; $1}
-	changeOpt.pack("side" => "right")
-	return items
-end
-
-def displayMelees(root,changeOpt)
-	items = Array.new
-	for i in MELEES
+	for i in ITEMS[category]
 		items.push("%-20s\t%5s" % [i.name, i.isOwned])
 	end
 	changeOpt.values = items.map{|i| i=~/^(.+)\s/; $1}
@@ -58,28 +13,10 @@ end
 
 def changeOwnStatus(choice, category)
 	choice = choice.strip
-	if category == 1
-		item = findElement(WARFRAMES, choice)
-		if item != nil
-			item.isOwned = !(item.isOwned)
-		end
-	elsif category == 2
-		item = findElement(PRIMARIES, choice)
-		if item != nil
-			item.isOwned = !(item.isOwned)
-		end
-	elsif category == 3
-		item = findElement(SECONDARIES, choice)
-		if item != nil
-			item.isOwned = !(item.isOwned)
-		end
-	elsif category == 4
-		item = findElement(MELEES, choice)
-		if item != nil
-			item.isOwned = !(item.isOwned)
-		end
+	item = findElement(ITEMS[category], choice)
+	if item != nil
+		item.isOwned = !(item.isOwned)
 	end
-	item.name
 end
 
 def findElement(list, elm)

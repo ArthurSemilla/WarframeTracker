@@ -5,7 +5,7 @@ root = TkRoot.new do
 	minsize(500,500)
 end
 
-category = 0
+category = -1
 
 TkLabel.new(root) do
 
@@ -21,10 +21,10 @@ TkLabel.new(root) do
 
 	changeButton = TkButton.new(root) {text 'Change'; command(proc{changeOwnStatus(changeOpt.get.to_s, category); output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "right")}
 
-	wButton = TkButton.new(frame) {text 'Warframes'; command(proc{output.value = displayWarframes(root,changeOpt); category = 1}) ; pack("side" => "left")}
-	wButton = TkButton.new(frame) {text 'Primaries' ; command(proc{output.value = displayPrimaries(root,changeOpt); category = 2}) ; pack("side" => "left")}
-	wButton = TkButton.new(frame) {text 'Secondaries' ; command(proc{output.value = displaySecondaries(root,changeOpt); category = 3}) ; pack("side" => "left")}
-	wButton = TkButton.new(frame) {text 'Melees' ; command(proc{output.value = displayMelees(root,changeOpt); category = 4}) ; pack("side" => "left")}
+	wButton = TkButton.new(frame) {text 'Warframes'; command(proc{category = 0; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
+	wButton = TkButton.new(frame) {text 'Primaries' ; command(proc{category = 1; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
+	wButton = TkButton.new(frame) {text 'Secondaries' ; command(proc{category = 2; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
+	wButton = TkButton.new(frame) {text 'Melees' ; command(proc{category = 3; output.value = getDisplay(root,changeOpt,category)}) ; pack("side" => "left")}
 	
 	# 	STDOUT.flush
 	# 	choice = gets.chomp.to_i
